@@ -7,8 +7,8 @@ extends /layouts/default
 //- variables this page
 //-
 append variables
-  - const TITLE       = 'AWESOME TITLE'
-  - const DESCRIPTION = 'AWESOME DESCRIPTION'
+  - const TITLE       = 'SpeechRecognition'
+  - const DESCRIPTION = 'SpeechRecognition'
 
 //- ------------------------------------
 //- style this page
@@ -16,12 +16,14 @@ append variables
 block style
   //- example
   //- link(rel="stylesheet", href="css/style.css")
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous")
 
 //- ------------------------------------
 //- script this page
 //-
 block scripts
   //- example
+  script(src='https://use.fontawesome.com/d9d1f9833b.js')
   script(src='js/index.js')
 
 
@@ -29,6 +31,10 @@ block scripts
 //- content this page
 //-
 block content
-  h1
-    = domain
-    | hodesadfjlsjdfal;sdkjf;lhgalsdjfasdkl
+  #app.wrapper
+    .speech_wrap
+      ul.speech-lists
+        li.speech-list
+    .sction_wrap
+      .btn-microphone
+        i.fa.fa-microphone(aria-hidden="true")

@@ -16,6 +16,11 @@ const config = {
     path: distDir,
     filename: '[name].js'
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
   module: {
     rules: [
       {
