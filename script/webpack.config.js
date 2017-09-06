@@ -7,6 +7,8 @@ const plugins = [
 const srcDir = require('./config').src
 const distDir = require('./config').dist
 
+console.log(require('./config').vueDir)
+
 const config = {
   context: srcDir,
   entry: {
@@ -18,14 +20,20 @@ const config = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      '@': require('./config').vueDir
+    },
+    extensions: ['.js', '.vue']
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
         exclude: /node_modules/
       }
     ]
