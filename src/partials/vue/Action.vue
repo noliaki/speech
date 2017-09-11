@@ -1,7 +1,7 @@
 <template lang="pug">
 .action--wrapper
-  .btn-microphone
-    i.fa.fa-microphone(aria-hidden="true", @click.prevent="addMessage('hogehogehogehogehogeho')")
+  .btn-microphone(@click.prevent="addMessage('hogehogehogehogehogeho')")
+    i.fa.fa-microphone(aria-hidden="true")
 </template>
 <script>
 export default {

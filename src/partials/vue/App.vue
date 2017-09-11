@@ -31,7 +31,7 @@ export default {
     addMessage (message) {
       this.messages.push({
         date: new Date(),
-        message: Math.random() * message
+        message
       })
     }
   },
