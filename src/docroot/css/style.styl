@@ -9,8 +9,8 @@
 .speech_wrap
   flex 1
   width 90%
-  margin auto
-  padding 40px
+  margin 40px auto
+  padding 0 40px 0 0
   overflow-y: scroll
 
   &::-webkit-scrollbar
@@ -30,6 +30,8 @@
   overflow hidden
 
 .speech-list
+  display flex
+  align-items center
   border-top 1px solid #eee
   padding 1em
 
@@ -38,6 +40,30 @@
 
   &:nth-child(2n)
     background-color #f9f9f9
+
+.speech-list--left_col
+  flex 1
+
+.speech-list--right_col
+  font-size 2.5rem
+  color #55acee
+
+.tweet
+  display block
+  line-height 0
+  color #55acee
+  transition transform 300ms $easeOutSine, opacity 300ms linear
+
+  &:visited
+  &:active
+  &:link
+  &:hover
+    color #55acee
+
+  &:hover
+    transform scale(0.9)
+    opacity 0.8
+
 
 .speech-list--date
   font-size 0.8em
@@ -63,7 +89,7 @@
   border-radius 50px
   border 3px solid #001522
   background: linear-gradient(to top, #001522 0%, #3d464c 100%)
-  font-size 50px
+  font-size 40px
   line-height: 80px
   margin 0 auto -20px
   width 100px
