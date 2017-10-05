@@ -1,7 +1,11 @@
 <template lang="pug">
 #app.wrapper
   Message(:messages="messages")
-  Action(:addMessage="addMessage")
+  Action(
+    :toggleRecognization="toggleRecognization",
+    :isRecognizing="isRecognizing",
+    :toggleContinuous="toggleContinuous"
+  )
 </template>
 <script>
 import Message from './Message'
@@ -19,12 +23,10 @@ if (!SpeechRecognition) {
 export default {
   data () {
     return {
-      messages: [
-        {
-          date: new Date(),
-          message: 'hoge'
-        }
-      ]
+      recognition: undefined,
+      isRecognizing: false,
+      continuous: false,
+      messages: []
     }
   },
   methods: {
@@ -33,11 +35,56 @@ export default {
         date: new Date(),
         message
       })
+    },
+    toggleContinuous (event) {
+      console.log(event)
+      this.continuous = event.target.checked
+    },
+    toggleRecognization () {
+      if (this.isRecognizing) {
+        this.recognition.stop()
+        this.isRecognizing = false
+        return
+      }
+
+      this.recognition.start()
+    },
+    onResult (event) {
+      this.messages.push({
+        date: new Date(),
+        message: event.results[0][0].transcript
+      })
+    },
+    onEnd (event) {
+      if (this.continuous && this.isRecognizing) {
+        this.recognition.start()
+        return
+      }
+
+      this.isRecognizing = false
+
+      console.log(event)
+    },
+    onStart (event) {
+      this.isRecognizing = true
+    },
+    onError (event) {
+      this.isRecognizing = false
     }
   },
   components: {
     Message,
     Action
+  },
+  created () {
+    this.recognition = new SpeechRecognition()
+    this.recognition.continuous = false
+    this.recognition.lang = 'ja'
+
+    this.recognition.addEventListener('result', this.onResult)
+    this.recognition.addEventListener('end', this.onEnd)
+    this.recognition.addEventListener('start', this.onStart)
+    this.recognition.addEventListener('error', this.onError)
   }
 }
 </script>

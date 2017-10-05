@@ -1,6 +1,12 @@
 <template lang="pug">
 .speech_wrap(ref="wrap")
-  transition-group.speech-lists(tag="ul", name="list", @enter="enter", ref="lists")
+  transition-group.speech-lists(
+    tag="ul",
+    name="list",
+    @enter="enter",
+    ref="lists",
+    v-show="messages.length"
+  )
     li.speech-list(v-for="(item, index) in messages", key="index")
       .speech-list--left_col
         .speech-list--date
